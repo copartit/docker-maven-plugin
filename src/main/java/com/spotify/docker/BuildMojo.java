@@ -294,7 +294,18 @@ public class BuildMojo extends AbstractDockerMojo {
   public boolean getForceTags() {
     return forceTags;
   }
-  
+
+  private String getDockerDirectory() {
+    Path path = Paths.get(dockerDirectory, "Dockerfile");
+    if (!path.toFile().exists()) {
+      path = Paths.get(buildDirectory).resolveSibling(dockerDirectory);
+      if (path.resolve("Dockerfile").toFile().exists()) {
+        return path.toString();
+      }
+    }
+    return dockerDirectory;
+  }
+
   private boolean weShouldSkipDockerBuild() {
     if (skipDockerBuild) {
       getLog().info("Property skipDockerBuild is set");
@@ -308,7 +319,7 @@ public class BuildMojo extends AbstractDockerMojo {
     }
 
     if (dockerDirectory != null) {
-      final Path path = Paths.get(dockerDirectory, "Dockerfile");
+      final Path path = Paths.get(getDockerDirectory(), "Dockerfile");
       if (!path.toFile().exists()) {
         getLog().info("No Dockerfile in dockerDirectory");
         return true;
@@ -400,7 +411,7 @@ public class BuildMojo extends AbstractDockerMojo {
       createDockerFile(destination, copiedPaths);
     } else {
       final Resource resource = new Resource();
-      resource.setDirectory(dockerDirectory);
+      resource.setDirectory(getDockerDirectory());
       resources.add(resource);
       copyResources(destination);
     }
