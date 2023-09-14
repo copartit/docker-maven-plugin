@@ -279,6 +279,17 @@ public class BuildMojo extends AbstractDockerMojo {
     return skipDockerBuild;
   }
 
+  private String getDockerDirectory() {
+    Path path = Paths.get(dockerDirectory, "Dockerfile");
+    if (!path.toFile().exists()) {
+      path = Paths.get(buildDirectory).resolveSibling(dockerDirectory);
+      if (path.resolve("Dockerfile").toFile().exists()) {
+        return path.toString();
+      }
+    }
+    return dockerDirectory;
+  }
+
   @Override
   protected void execute(final DockerClient docker)
       throws MojoExecutionException, GitAPIException, IOException, DockerException,
@@ -347,7 +358,7 @@ public class BuildMojo extends AbstractDockerMojo {
       createDockerFile(destination, copiedPaths);
     } else {
       final Resource resource = new Resource();
-      resource.setDirectory(dockerDirectory);
+      resource.setDirectory(getDockerDirectory());
       resources.add(resource);
       copyResources(destination);
     }
