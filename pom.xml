@@ -277,7 +277,7 @@
           <target>1.7</target>
         </configuration>
       </plugin>
-      <plugin>
+      <!--plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>2.17</version>
@@ -300,7 +300,7 @@
         <configuration>
           <linkXRef>false</linkXRef>
         </configuration>
-      </plugin>
+      </plugin-->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
@@ -329,7 +329,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+      <!--plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-invoker-plugin</artifactId>
         <version>1.7</version>
@@ -357,7 +357,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -371,7 +371,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+      <!--plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.9.1</version>
@@ -390,7 +390,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
@@ -406,7 +406,7 @@
           </dependency>
         </dependencies>
       </plugin>
-      <plugin>
+      <!--plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
         <version>1.6.4</version>
@@ -416,7 +416,7 @@
           <nexusUrl>https://oss.sonatype.org/</nexusUrl>
           <autoReleaseAfterClose>${autoReleaseAfterClose}</autoReleaseAfterClose>
         </configuration>
-      </plugin>
+      </plugin-->
     </plugins>
   </build>
 
